@@ -1,12 +1,16 @@
 const textInputRef = document.querySelector('#validation-input');
 const dataInputLength = Number(textInputRef.getAttribute("data-length"));
 
+function removeClass(remove, add) {
+    textInputRef.classList.remove(`${remove}`);
+    textInputRef.classList.add(`${add}`);
+}
 
-textInputRef.addEventListener('blur', check);
 
 function check() {
     textInputRef.value.length !== dataInputLength
-        ? textInputRef.classList.add("invalid")
-        : textInputRef.classList.replace("invalid", "valid"); 
+        ? removeClass("valid", "invalid")
+        : removeClass("invalid", "valid")
 }
 
+textInputRef.addEventListener('blur', check);
